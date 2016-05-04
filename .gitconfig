@@ -1,11 +1,17 @@
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
 [user]
-	name = swisherb
-	email = swisherb@gvsu.edu
+    name = Brent Swisher
+    email = swisherb@gvsu.edu
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 [color]
-	ui = true
+    ui = true
 [color]
     branch = auto
     diff = auto
@@ -26,9 +32,10 @@
 [push]
 	default = simple
 [alias]
-        fs = !git fetch && git status
-        hist = log --pretty=format:\"%ad - %an | %s%d \" --graph --date=relative
+    fs = !git fetch && git status
+    hist = log --pretty=format:\"%ad - %an | %s%d \" --graph --date=relative
+    files = !sh -c 'clear && git log --oneline --stat -n ${1:-5}' -
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
